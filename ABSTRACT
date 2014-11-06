@@ -1,0 +1,21 @@
+entity
+
+component
+	size
+		w
+		h
+	position
+		x
+		y
+	momentum
+		angle
+		velocity
+	controllable
+
+system
+	movement (position & momentum)
+	representation (size & position)
+	inputToEvent (controllable)
+
+main
+	loopThroughSystems
