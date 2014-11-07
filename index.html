@@ -1,32 +1,59 @@
 <!doctype html>
-<script>
-"use strict";
-</script>
 <html>
 <head>
 	<title>
 		Coen
 	</title>
 </head>
+<style>
+	html, body {
+		width:  100%;
+		height: 100%;
+		margin: 0px;
+	}
+</style>
 <body>
-	<script src="lib/component_holder.js"></script>
-	<script src="lib/entity.js"></script>
+	<canvas id="canvas" style=""></canvas>
+	<canvas id="canvas2" style=""></canvas>
 
-	<script src="lib/components/has_been_updated.js"></script>
-	<script src="lib/components/events.js"></script>
-	<script src="lib/components/momentum.js"></script>
-	<script src="lib/components/position.js"></script>
-	<script src="lib/components/size.js"></script>
-	<script src="lib/components/tick_counter.js"></script>
+	<script src="lib/easeljs/lib/easeljs-NEXT.combined.js"></script>
+	<script src="lib/coen/component_holder.js"></script>
+	<script src="lib/coen/entity.js"></script>
 
-	<script src="lib/representations/html/entity_html.js"></script>
+	<script src="lib/coen/components/has_been_updated.js"></script>
+	<script src="lib/coen/components/events.js"></script>
+	<script src="lib/coen/components/momentum.js"></script>
+	<script src="lib/coen/components/position.js"></script>
+	<script src="lib/coen/components/size.js"></script>
+	<script src="lib/coen/components/tick_counter.js"></script>
+	<script src="lib/coen/components/ticker.js"></script>
+
+	<script src="lib/coen/representations/html/html_graphic_handler.js"></script>
+	<script src="lib/coen/representations/html/entity_html.js"></script>
+
+	<script src="lib/coen/representations/easeljs/easel_graphic_handler.js"></script>
+	<script src="lib/coen/representations/easeljs/easel_entity.js"></script>
 
 	<script src="js/entities/player.js"></script>
-	<script src="js/input/control_player.js"></script>
+	<script src="js/input/wasd.js"></script>
 	<script src="js/init.js"></script>
 
 	<script>
-		window.game.init(document, document.body);
+		"use strict";
+		var ticker = window.coen.ticker();
+		var graphic_handler = window.coen.easel_graphic_handler("canvas", ticker);
+		ticker.fps = 60;
+		ticker.start();
+
+		window.game.init(document.getElementById("canvas"), graphic_handler, ticker);
+
+
+		var ticker2 = window.coen.ticker();
+		var graphic_handler2 = window.coen.easel_graphic_handler("canvas2", ticker2);
+		ticker2.fps = 60;
+		ticker2.start();
+
+		window.game.init(document.getElementById("canvas2"), graphic_handler2, ticker2);
 	</script>
 </body>
 </html>

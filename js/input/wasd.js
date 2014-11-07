@@ -1,23 +1,14 @@
 "use strict";
 
 (function(namespace) {
-	namespace.control_player = function(player, container) {
-		var C_MILLISECONDS = 1000 / 60;
-		
+	namespace.wasd = function(player, container) {
 		var keydowns = {};
 		var nof_keydowns = 0;
-
-		var timer = null;
 
 		var delta_x = 0;
 		var delta_y = 0;
 
-		var movement_callback = function(entity, milliseconds) {
-			clearTimeout(timer);
-			entity.events.trigger("update");
-			var callback = function() { movement_callback(entity, milliseconds); };
-			timer = setTimeout(callback, milliseconds);
-		};
+		console.log(container);
 
 		container.addEventListener("keydown", function(event) {
 			switch(event.which) {								// Directions
@@ -38,9 +29,8 @@
 			}
 
 			if ((delta_x !== 0 || delta_y !== 0) && !keydowns[event.which]) {
-				player.momentum.velocity = 40;
+				player.momentum.velocity = 90;
 				player.momentum.angle = 90 + Math.atan2(delta_y, delta_x) * 180 / Math.PI;
-				movement_callback(player, C_MILLISECONDS);
 				keydowns[event.which] = true;
 				nof_keydowns++;
 			}
@@ -71,11 +61,8 @@
 
 			if (nof_keydowns <= 0) {
 				player.momentum.velocity = 0;
-				clearTimeout(timer);
-				player.events.trigger("update");
 			} else {
 				player.momentum.angle = 90 + Math.atan2(delta_y, delta_x) * 180 / Math.PI;
-				movement_callback(player, C_MILLISECONDS);
 			}
 		});
 	};

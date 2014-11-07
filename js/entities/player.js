@@ -3,14 +3,12 @@
 (function(namespace) {
 	var coen = window.coen;
 
-	namespace.entities = namespace.entities || {};
-
-	namespace.entities.player = function() {
+	namespace.player = function(ticker) {
 		var that = Object.create(coen.entity());
 
 		that.set_component(coen.position);
 		that.set_component(coen.events);
-		that.set_component(coen.momentum);
+		that.set_component(coen.momentum, ticker);
 		that.set_component(coen.size);
 
 		that.position.x = 50;

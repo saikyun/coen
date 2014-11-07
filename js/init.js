@@ -1,17 +1,21 @@
 "use strict";
 
 (function(namespace) {
-	var coen = window.coen;
+	namespace.init = function(container, graphic_handler, ticker) {
+		var create_player = function(x, y) {
+			var player = namespace.player(ticker);
+			player.position.x = x;
+			player.position.y = y;
 
-	namespace.init = function(document, container) {
-		for (var i = 0; i < 100; i++) {
-			var player = namespace.entities.player();
-			player.position.x = Math.random() * 1000;
-			player.position.y = Math.random() * 1000;
+			graphic_handler.add_graphic(player);
 
-			coen.entity_html(player, document, container);
+			return player;
+		};
 
-			namespace.control_player(player, container);
+		for (var i = 0; i < 0; i++) {
+			create_player(Math.random() * 1000, Math.random() * 1000);
 		}
+
+		namespace.wasd(create_player(100, 100), container);
 	};
 })(window.game = window.game || {});
