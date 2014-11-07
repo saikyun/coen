@@ -14,7 +14,6 @@
 </style>
 <body>
 	<canvas id="canvas" style=""></canvas>
-	<canvas id="canvas2" style=""></canvas>
 
 	<script src="lib/easeljs/lib/easeljs-NEXT.combined.js"></script>
 	<script src="lib/coen/component_holder.js"></script>
@@ -45,15 +44,7 @@
 		ticker.fps = 60;
 		ticker.start();
 
-		window.game.init(document.getElementById("canvas"), graphic_handler, ticker);
-
-
-		var ticker2 = window.coen.ticker();
-		var graphic_handler2 = window.coen.easel_graphic_handler("canvas2", ticker2);
-		ticker2.fps = 60;
-		ticker2.start();
-
-		window.game.init(document.getElementById("canvas2"), graphic_handler2, ticker2);
+		window.game.init(document.body, graphic_handler, ticker);
 	</script>
 </body>
 </html>
