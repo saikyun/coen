@@ -1,4 +1,8 @@
+"use strict";
+
 (function(namespace) {
+	var coen = window.coen;
+
 	namespace.entities = namespace.entities || {};
 
 	namespace.entities.player = function() {
@@ -16,5 +20,5 @@
 		that.size.h = 50;
 
 		return that;
-	}
-})(this.game = this.game || {});
+	};
+})(window.game = window.game || {});

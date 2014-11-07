@@ -1,3 +1,5 @@
+"use strict";
+
 (function(namespace) {
 	namespace.control_player = function(player, container) {
 		var C_MILLISECONDS = 1000 / 60;
@@ -15,7 +17,7 @@
 			entity.events.trigger("update");
 			var callback = function() { movement_callback(entity, milliseconds); };
 			timer = setTimeout(callback, milliseconds);
-		}
+		};
 
 		container.addEventListener("keydown", function(event) {
 			switch(event.which) {								// Directions
@@ -35,7 +37,7 @@
 					break;
 			}
 
-			if ((delta_x != 0 || delta_y != 0) && !keydowns[event.which]) {
+			if ((delta_x !== 0 || delta_y !== 0) && !keydowns[event.which]) {
 				player.momentum.velocity = 40;
 				player.momentum.angle = 90 + Math.atan2(delta_y, delta_x) * 180 / Math.PI;
 				movement_callback(player, C_MILLISECONDS);
@@ -76,5 +78,5 @@
 				movement_callback(player, C_MILLISECONDS);
 			}
 		});
-	}
-})(this.game = this.game || {});
+	};
+})(window.game = window.game || {});
