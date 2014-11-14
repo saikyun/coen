@@ -3,7 +3,7 @@
 (function(namespace) {
 	var coen = window.coen;
 
-	namespace.crosshair = function(player) {
+	namespace.crosshair = function(player, ticker) {
 		var that = Object.create(coen.entity(), {
 			name: {
 				value: "crosshair"
@@ -15,10 +15,11 @@
 
 		that.set_component(coen.position);
 		that.set_component(coen.events);
-		that.set_component(coen.size);
+		that.set_component(coen.circle);
+		that.set_component(coen.circle_collision);
+		that.set_component(coen.momentum, ticker);
 
-		that.size.w = 10;
-		that.size.h = 10;
+		that.circle.radius = 10;
 
 		return that;
 	};

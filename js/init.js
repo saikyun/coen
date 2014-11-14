@@ -12,16 +12,30 @@
 			return player;
 		};
 
+		var create_ground = function(x, y) {
+			var ground = namespace.ground(ticker);
+			ground.position.x = x;
+			ground.position.y = y;
+
+			graphic_handler.add_graphic(ground);
+
+			return ground;
+		};
+
 		var create_crosshair = function(player) {
-			var crosshair = namespace.crosshair(player);
+			var crosshair = namespace.crosshair(player, ticker);
 
 			graphic_handler.add_graphic(crosshair);
 
 			return crosshair;
 		};
 
-		for (var i = 0; i < 0; i++) {
+		for (var i = 0; i < 1; i++) {
 			create_player(Math.random() * 1000, Math.random() * 1000);
+		}
+
+		for (i = 0; i < 1; i++) {
+			create_ground(i * 40, 500);
 		}
 
 		var player = create_player(100, 100);

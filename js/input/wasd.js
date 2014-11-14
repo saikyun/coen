@@ -35,7 +35,7 @@
 			}
 
 			if ((delta_x || delta_y) && !keydowns[event.which]) {
-				vectors[event.which] = window.coen.vector(Math.atan2(delta_y, delta_x) * 180 / Math.PI, 0.5);
+				vectors[event.which] = window.coen.vector(Math.atan2(delta_y, delta_x) * 180 / Math.PI, 0.05);
 				keydowns[event.which] = true;
 				nof_keydowns++;
 			}
@@ -74,10 +74,6 @@
 
 				entity.momentum.angle = new_vector.angle;
 				entity.momentum.velocity = new_vector.velocity;
-
-				if (vector.velocity > 0.1) {
-					vector.velocity -= 0.1;
-				}
 			}
 		});
 
