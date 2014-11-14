@@ -19,6 +19,8 @@
 	<script src="lib/coen/component_holder.js"></script>
 	<script src="lib/coen/entity.js"></script>
 
+	<script src="lib/coen/types/vector.js"></script>
+
 	<script src="lib/coen/components/has_been_updated.js"></script>
 	<script src="lib/coen/components/events.js"></script>
 	<script src="lib/coen/components/momentum.js"></script>
@@ -26,15 +28,20 @@
 	<script src="lib/coen/components/size.js"></script>
 	<script src="lib/coen/components/tick_counter.js"></script>
 	<script src="lib/coen/components/ticker.js"></script>
+	<script src="lib/coen/components/gravity.js"></script>
+	<script src="lib/coen/components/air_gravity.js"></script>
 
 	<script src="lib/coen/representations/html/html_graphic_handler.js"></script>
 	<script src="lib/coen/representations/html/entity_html.js"></script>
 
 	<script src="lib/coen/representations/easeljs/easel_graphic_handler.js"></script>
 	<script src="lib/coen/representations/easeljs/easel_entity.js"></script>
+	<script src="lib/coen/representations/easeljs/easel_crosshair.js"></script>
 
 	<script src="js/entities/player.js"></script>
+	<script src="js/entities/crosshair.js"></script>
 	<script src="js/input/wasd.js"></script>
+	<script src="js/input/follow_mouse.js"></script>
 	<script src="js/init.js"></script>
 
 	<script>
@@ -44,7 +51,7 @@
 		ticker.fps = 60;
 		ticker.start();
 
-		window.game.init(document.body, graphic_handler, ticker);
+		window.game.init(graphic_handler.get_stage(), graphic_handler, ticker);
 	</script>
 </body>
 </html>
