@@ -30,8 +30,15 @@
 			return crosshair;
 		};
 
-		for (var i = 0; i < 1; i++) {
-			create_player(Math.random() * 1000, Math.random() * 1000);
+		var vector = window.coen.entity();
+		vector.name = "vector";
+		vector.set_component(window.coen.vector_component);
+		vector.set_component(window.coen.events);
+
+		graphic_handler.add_graphic(vector);
+
+		for (var i = 0; i < 2; i++) {
+			create_player(Math.random() * 500, Math.random() * 300);
 		}
 
 		for (i = 0; i < 1; i++) {
@@ -44,6 +51,11 @@
 		document.onkeydown = movement.key_down;
 		document.onkeyup = movement.key_up;
 
-		namespace.follow_mouse(create_crosshair(player), container);
+		var crosshair = create_crosshair(player);
+		crosshair.events.bind("display_collision_vector", function(data) {
+			vector.vector.angle = data.angle;
+			vector.vector.velocity = data.velocity;
+		});
+		namespace.follow_mouse(crosshair, container);
 	};
 })(window.game = window.game || {});

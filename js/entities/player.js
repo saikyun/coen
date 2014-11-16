@@ -4,7 +4,11 @@
 	var coen = window.coen;
 
 	namespace.player = function(ticker) {
-		var that = Object.create(coen.entity());
+		var that = Object.create(coen.entity(), {
+			name: {
+				value: "player"
+			}
+		});
 
 		that.set_component(coen.position);
 		that.set_component(coen.events);
@@ -15,8 +19,8 @@
 		that.set_component(coen.circle_collision);
 
 		that.events.bind("momentum_updated", function() {
-			if (that.momentum.velocity > 1) {
-				that.momentum.velocity = 1;
+			if (that.momentum.velocity > 5) {
+				that.momentum.velocity = 5;
 			}
 		});
 

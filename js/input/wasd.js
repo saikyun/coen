@@ -35,7 +35,7 @@
 			}
 
 			if ((delta_x || delta_y) && !keydowns[event.which]) {
-				vectors[event.which] = window.coen.vector(Math.atan2(delta_y, delta_x) * 180 / Math.PI, 0.05);
+				vectors[event.which] = window.coen.vector(Math.atan2(delta_y, delta_x) * 180 / Math.PI, 1);
 				keydowns[event.which] = true;
 				nof_keydowns++;
 			}
