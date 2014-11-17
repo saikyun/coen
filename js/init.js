@@ -37,8 +37,8 @@
 
 		graphic_handler.add_graphic(vector);
 
-		for (var i = 0; i < 2; i++) {
-			create_player(Math.random() * 500, Math.random() * 300);
+		for (var i = 0; i < 10; i++) {
+			create_player(Math.random() * 1000, Math.random() * 1000);
 		}
 
 		for (i = 0; i < 1; i++) {

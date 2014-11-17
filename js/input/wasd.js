@@ -35,7 +35,13 @@
 			}
 
 			if ((delta_x || delta_y) && !keydowns[event.which]) {
-				vectors[event.which] = window.coen.vector(Math.atan2(delta_y, delta_x) * 180 / Math.PI, 1);
+				vectors[event.which] = window.coen.vector(
+					{
+						velocity: 1,
+						angle: Math.atan2(delta_y, delta_x) * 180 / Math.PI
+					}
+				);
+				console.log(vectors[event.which]);
 				keydowns[event.which] = true;
 				nof_keydowns++;
 			}
@@ -70,7 +76,15 @@
 			for (var pos in vectors) {
 				var vector = vectors[pos];
 
-				var new_vector = window.coen.apply_vector(vector, window.coen.vector(entity.momentum.angle, entity.momentum.velocity));
+				var new_vector = window.coen.apply_vector(
+					vector,
+					window.coen.vector(
+						{
+							angle: entity.momentum.angle,
+							velocity: entity.momentum.velocity
+						}
+					)
+				);
 
 				entity.momentum.angle = new_vector.angle;
 				entity.momentum.velocity = new_vector.velocity;

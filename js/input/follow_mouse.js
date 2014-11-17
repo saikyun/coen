@@ -5,7 +5,7 @@
 		var target = {x: 0, y: 0};
 
 		var update_angle_and_velocity = function(target, entity) {
-			var vector = window.coen.xy_to_vector(target.x - entity.position.x, target.y - entity.position.y);
+			var vector = window.coen.vector({x: target.x - entity.position.x, y: target.y - entity.position.y});
 			entity.momentum.angle = vector.angle;
 			entity.momentum.velocity = vector.velocity;
 		};

@@ -15,7 +15,7 @@
 		that.set_component(coen.momentum, ticker);
 		that.set_component(coen.circle);
 		//that.set_component(coen.gravity, ticker);
-		that.set_component(coen.air_gravity, ticker);
+		//that.set_component(coen.air_gravity, ticker);
 		that.set_component(coen.circle_collision);
 
 		that.events.bind("momentum_updated", function() {
