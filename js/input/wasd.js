@@ -41,7 +41,6 @@
 						angle: Math.atan2(delta_y, delta_x) * 180 / Math.PI
 					}
 				);
-				console.log(vectors[event.which]);
 				keydowns[event.which] = true;
 				nof_keydowns++;
 			}
