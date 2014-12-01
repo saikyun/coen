@@ -4,6 +4,7 @@
 	<title>
 		Coen
 	</title>
+	<link rel="stylesheet" type="text/css" href="css/canvas.css">
 </head>
 <style>
 	html, body {
@@ -13,16 +14,14 @@
 	}
 </style>
 <body>
-	<canvas id="canvas" style=""></canvas>
+	<canvas id="canvas"></canvas>
 
 	<script src="lib/easeljs/lib/easeljs-NEXT.combined.js"></script>
 	<script src="lib/coen/component_holder.js"></script>
 	<script src="lib/coen/entity.js"></script>
 
 	<script src="lib/coen/types/vector.js"></script>
-	<script src="lib/coen/when.js"></script>
 
-	<script src="lib/coen/components/has_been_updated.js"></script>
 	<script src="lib/coen/components/events.js"></script>
 	<script src="lib/coen/components/momentum.js"></script>
 	<script src="lib/coen/components/position.js"></script>
@@ -31,7 +30,9 @@
 	<script src="lib/coen/components/ticker.js"></script>
 	<script src="lib/coen/components/gravity.js"></script>
 	<script src="lib/coen/components/air_gravity.js"></script>
+	<script src="lib/coen/components/collision.js"></script>
 	<script src="lib/coen/components/circle_collision.js"></script>
+	<script src="lib/coen/components/rectangle_collision.js"></script>
 	<script src="lib/coen/components/circle.js"></script>
 	<script src="lib/coen/components/vector_component.js"></script>
 
@@ -42,6 +43,7 @@
 	<script src="lib/coen/representations/easeljs/easel_entity.js"></script>
 	<script src="lib/coen/representations/easeljs/easel_crosshair.js"></script>
 	<script src="lib/coen/representations/easeljs/easel_vector.js"></script>
+	<script src="lib/coen/representations/easeljs/easel_ground.js"></script>
 
 	<script src="lib/coen/tests/test_vector.js"></script>
 
@@ -55,7 +57,7 @@
 	<script>
 		"use strict";
 		var ticker = window.coen.ticker();
-		var graphic_handler = window.coen.easel_graphic_handler("canvas", ticker);
+		var graphic_handler = window.coen.easel_graphic_handler(document.getElementById("canvas"), ticker);
 		ticker.fps = 60;
 		ticker.start();
 
