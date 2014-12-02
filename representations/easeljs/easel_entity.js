@@ -2,13 +2,17 @@
 
 (function(ns) {
 	ns.easel_entity = function(entity) {
-		if (!entity.has_component("circle")) {
-			throw entity + " has no circle.";
+		if (!ns.component.has(entity, "radius")) {
+			throw entity + " has no radius.";
+		}
+
+		if (!ns.component.has(entity, "position")) {
+			throw entity + " has no position.";
 		}
 
 		var that = Object.create(new window.createjs.Shape(), {});
 
-		that.graphics.beginFill("red").drawCircle(0, 0, entity.circle.radius);
+		that.graphics.beginFill("red").drawCircle(0, 0, entity.radius);
 
 		var update = function() {
 			that.x = entity.position.x;

@@ -1,30 +1,30 @@
 "use strict";
 
 (function(ns) {
-	ns.rectangle_collision = function(entity, collidables) {
-		if (!entity.has_component("rectangle")) {
-			throw entity + " has no rectangle.";
+	ns.rectangle_collision = function(collidables) {
+		if (!ns.component.has(this, "rectangle")) {
+			throw this + " has no rectangle.";
 		}
 
-		var that = Object.create(ns.collision(entity, collidables), {
+		var that = Object.create(ns.collision(this, collidables), {
 			name: {
 				value: "rectangle_collision"
 			}
 		});
 
-		entity.events.bind("physics_update", function() {
-			var mypos = collidables.indexOf(entity);
+		this.events.bind("physics_update", function() {
+			var mypos = collidables.indexOf(this);
 			for (var pos in collidables) {
 				if (pos != mypos) {
 					var object = collidables[pos];
 					var collision_data = null;
 
-					if (object.has_component("circle")) {
-						collision_data = that.check_rectangle_collision(object, entity);
+					if (ns.component.has(this, "circle")) {
+						collision_data = that.check_rectangle_collision(object, this);
 						if (collision_data.collided === true) {
-							that.handle_collision(object, entity, collision_data.angle, collision_data.offset);
+							that.handle_collision(object, this, collision_data.angle, collision_data.offset);
 						}
-					} else if (object.has_component("rectangle")) {
+					} else if (ns.component.has(this, "rectangle")) {
 					}
 				}
 			}

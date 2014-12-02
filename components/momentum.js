@@ -1,27 +1,21 @@
 "use strict";
 
 (function(ns) {
-	ns.momentum = function(entity, ticker) {
-		var that = Object.create(ns.vector_component(entity), {
-			name: {
-				value: "momentum"
-			}
-		});
+	ns.momentum = function(data) {
+		var that = ns.vector(data.velocity || null);
 
-		ticker.bind(function() {
-			//if (_vector.velocity) {
+		that.name = "momentum";
+
+		var entity = this;
+
+		data.ticker.bind(function() {
+			if (that.velocity) {
 				entity.events.trigger("physics_update");
-			//}
-		});
-		that.set_component(ns.tick_counter);
-
-		entity.events.bind("vector_updated", function() {
-			if (that.velocity === 0) {
-				that.tick_counter.stop();
+				entity.events.trigger("position_updated");
 			}
 		});
 
-		entity.events.bind("physics_update", function() {
+		this.events.bind("physics_update", function() {
 			if (that.velocity !== 0) {
 				var distance = 1;
 

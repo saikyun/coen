@@ -2,7 +2,7 @@
 
 (function(ns) {
 	ns.easel_vector = function(entity) {
-		if (!entity.has_component("vector")) {
+		if (!ns.component.has(entity, "vector")) {
 			throw entity + " has no vector.";
 		}
 

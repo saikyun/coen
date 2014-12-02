@@ -2,44 +2,36 @@
 
 (function(ns) {
 	ns.tick_counter = function() {
-		var start_tick = new Date().getTime();
-		var last_tick = 0;
-		var stopped = true;
+		var _start_tick = new Date().getTime();
+		var _last_tick = 0;
+		var _stopped = true;
 
 		var current_tick = function() {
-			return new Date().getTime() - start_tick;
+			return new Date().getTime() - _start_tick;
 		};
 
-		var that = Object.create(ns.component_holder(), {
-			tick_since_last: {
-				value: function() {
-					if (stopped) {
-						that.start();
-					}
+		var that = {
+			tick_since_last: function() {
+				if (_stopped) {
+					that.start();
+				}
 
-					var since_last = current_tick() - last_tick;
-					last_tick = current_tick();
-					return since_last;
+				var since_last = current_tick() - _last_tick;
+				_last_tick = current_tick();
+				return since_last;
+			},
+			start: function() {
+				if (_stopped) {
+					_start_tick = new Date().getTime();
+					_last_tick = 0;
+					_stopped = false;
 				}
 			},
-			start: {
-				value: function() {
-					if (stopped) {
-						start_tick = new Date().getTime();
-						last_tick = 0;
-						stopped = false;
-					}
-				}
+			stop: function() {
+				_stopped = true;
 			},
-			stop: {
-				value: function() {
-					stopped = true;
-				}
-			},
-			name: {
-				value: "tick_counter"
-			}
-		});
+			name: "tick_counter"
+		};
 
 		return that;
 	};

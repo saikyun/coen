@@ -4,9 +4,8 @@
 	ns.collision = function(entity, collidables) {
 		collidables.push(entity);
 
-		var that = Object.create(ns.component_holder(), {
-			check_circle_collision: {
-				value: function(circle1, circle2) {
+		var that = {
+			check_circle_collision: function(circle1, circle2) {
 					var x = circle1.x - circle2.x;
 					var y = circle1.y - circle2.y;
 
@@ -23,15 +22,13 @@
 					}
 
 					return {collided: false};
-				}
 			},
-			check_rectangle_collision: {
-				value: function(entity1, entity2) {
+			check_rectangle_collision: function(entity1, entity2) {
 					var difference_x = entity1.position.x - entity2.position.x;
 					var difference_y = entity1.position.y - entity2.position.y;
 
-					var distance_x = Math.abs(difference_x) - (entity1.circle.radius + (entity2.rectangle.w / 2));
-					var distance_y = Math.abs(difference_y) - (entity1.circle.radius + (entity2.rectangle.h / 2));
+					var distance_x = Math.abs(difference_x) - (entity1.radius + (entity2.rectangle.w / 2));
+					var distance_y = Math.abs(difference_y) - (entity1.radius + (entity2.rectangle.h / 2));
 
 					var angle = null;
 					var offset = ns.vector();
@@ -66,7 +63,7 @@
 								corner.x += entity2.rectangle.w / 2;
 							}
 
-							var result = that.check_circle_collision({x: entity1.position.x, y: entity1.position.y, radius: entity1.circle.radius}, corner);
+							var result = that.check_circle_collision({x: entity1.position.x, y: entity1.position.y, radius: entity1.radius}, corner);
 							return result;
 						}
 
@@ -82,10 +79,8 @@
 					}
 
 					return {collided: false};
-				}
 			},
-			handle_collision: {
-				value: function(entity1, entity2, angle, offset) {
+			handle_collision: function(entity1, entity2, angle, offset) {
 					entity1.position.x -= offset.x;
 					entity1.position.y -= offset.y;
 
@@ -118,12 +113,9 @@
 
 					entity1.momentum.angle += angle;
 					entity2.momentum.angle += angle;
-				}
 			},
-			name: {
-				value: "collision"
-			}
-		});
+			name: "collision"
+		};
 
 		return that;
 	};

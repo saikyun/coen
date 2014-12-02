@@ -14,7 +14,9 @@
 			_timer = setTimeout(_callback, _fps);
 		};
 
-		var that = Object.create(ns.component_holder(), {
+		var that = {};
+
+		Object.defineProperties(that, {
 			bind: {
 				value: function(callback) {
 					_events.bind("tick", callback);

@@ -5,8 +5,8 @@
 		var _html_entity = null;
 
 		if (
-			   !entity.has_component("size") ||
-			   !entity.has_component("position")
+			   !ns.component.has("size") ||
+			   !ns.component.has("position")
 		) {
 			console.log(entity + " doesn't have size and position.");
 			return null;

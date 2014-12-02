@@ -2,7 +2,7 @@
 
 (function(ns) {
 	ns.easel_ground = function(entity) {
-		if (!entity.has_component("rectangle")) {
+		if (!ns.component.has(entity, "rectangle")) {
 			throw entity + " has no rectangle.";
 		}
 

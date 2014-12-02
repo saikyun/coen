@@ -1,9 +1,8 @@
 "use strict";
 
 (function(ns) {
-	ns.FUNCTION_NAME = function() {
-		var that = Object.create(Object.prototype, {
-		});
+	ns.FUNCTION_NAME = function(spec) {
+		var that = {};
 
 		return that;
 	};

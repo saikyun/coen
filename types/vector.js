@@ -127,6 +127,8 @@
 			}
 		});
 
+		that.name = "vector";
+
 		return that;
 	};
 

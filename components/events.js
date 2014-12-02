@@ -4,6 +4,8 @@
 	ns.events = function() {
 		var _callbacks = {};
 
+		var entity = this;
+
 		var that = Object.create(null, {
 			bind: {
 				value: function(event, callback) {
@@ -22,7 +24,7 @@
 						for (var pos in _callbacks[event]) {
 							var callback = _callbacks[event][pos];
 
-							callback.call(null, data);
+							callback.call(entity, data);
 						}
 					}
 				}

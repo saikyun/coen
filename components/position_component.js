@@ -1,17 +1,16 @@
 "use strict";
 
 (function(ns) {
-	ns.position = function(entity) {
-		var _x = 0;
-		var _y = 0;
+	ns.position = function(entity, data) {
+		var _position = ns.position(data);
 
 		var that = Object.create(ns.component_holder(), {
 			x: {
-				get: function()			{ return _x; },
+				get: function()			{ return _position.x; },
 				set: function(value) {
 					var changed = false;
-					if (_x !== value) {
-						_x = value;
+					if (_position.x !== value) {
+						_position.x = value;
 						changed = true;
 					}
 
@@ -21,11 +20,11 @@
 				}
 			},
 			y: {
-				get: function()			{ return _y; },
+				get: function()			{ return _position.y; },
 				set: function(value) {
 					var changed = false;
-					if (_y !== value) {
-						_y = value;
+					if (_position.y !== value) {
+						_position.y = value;
 						changed = true;
 					}
 
@@ -35,7 +34,7 @@
 				}
 			},
 			name: {
-				value: "position"
+				value: "position_component"
 			}
 		});
 

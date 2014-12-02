@@ -2,14 +2,14 @@
 
 (function(ns) {
 	ns.easel_crosshair = function(entity) {
-		if (!entity.has_component("circle")) {
-			throw entity + " has no circle.";
+		if (!ns.component.has(entity, "radius")) {
+			throw entity + " has no radius.";
 		}
 		
 		var that = Object.create(new window.createjs.Container(), {});
 
 		var ball = new window.createjs.Shape();
-		ball.graphics.beginFill("green").drawCircle(0, 0, entity.circle.radius);
+		ball.graphics.beginFill("green").drawCircle(0, 0, entity.radius);
 
 		var line = new window.createjs.Shape();
 
