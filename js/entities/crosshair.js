@@ -1,25 +1,19 @@
 "use strict";
 
-(function(namespace) {
+(function(ns) {
 	var coen = window.coen;
 
-	namespace.crosshair = function(player, ticker, collidables) {
-		var that = Object.create(coen.entity(), {
-			name: {
-				value: "crosshair"
-			},
-			player: {
-				value: player
-			}
-		});
+	ns.crosshair = function(player, ticker, collidables) {
+		var that = {
+			name: "crosshair",
+			player: player
+		};
 
-		that.set_component(coen.position);
-		that.set_component(coen.events);
-		that.set_component(coen.circle);
-		//that.set_component(coen.circle_collision, collidables);
-		that.set_component(coen.momentum, ticker);
-
-		that.circle.radius = 10;
+		coen.component.set(that, coen.position);
+		coen.component.set(that, coen.events);
+		that.radius = 50;
+		//coen.component.set(that, coen.circle_collision, collidables);
+		coen.component.set(that, coen.momentum, {ticker: ticker});
 
 		return that;
 	};

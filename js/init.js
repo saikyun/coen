@@ -42,10 +42,10 @@
 			return crosshair;
 		};
 
-		var vector = window.coen.entity();
+		var vector = {};
 		vector.name = "vector";
-		vector.set_component(window.coen.vector_component);
-		vector.set_component(window.coen.events);
+		window.coen.component.set(vector, window.coen.vector);
+		window.coen.component.set(vector, window.coen.events);
 
 		graphic_handler.add_graphic(vector);
 

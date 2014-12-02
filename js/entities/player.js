@@ -4,24 +4,18 @@
 	var coen = window.coen;
 
 	namespace.player = function(ticker, collidables) {
-		var that = Object.create(coen.entity(), {
-			name: {
-				value: "player"
-			}
-		});
+		var that = {
+			name: "player"
+		};
 
-		that.set_component(coen.position);
-		that.set_component(coen.events);
-		that.set_component(coen.momentum, ticker);
-		that.set_component(coen.circle);
-		//that.set_component(coen.gravity, ticker);
-		//that.set_component(coen.air_gravity, ticker);
-		that.set_component(coen.circle_collision, collidables);
+		coen.component.set(that, coen.position, {x: 50, y: 50});
+		coen.component.set(that, coen.events);
+		coen.component.set(that, coen.momentum, {ticker: ticker});
+		//coen.component.set(that, coen.gravity, ticker);
+		//coen.component.set(that, coen.air_gravity, ticker);
+		that.radius = 50;
+		coen.component.set(that, coen.circle_collision, collidables);
 
-		that.position.x = 50;
-		that.position.y = 50;
-
-		that.circle.radius = 50;
 
 		return that;
 	};

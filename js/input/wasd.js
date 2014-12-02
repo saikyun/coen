@@ -1,8 +1,8 @@
 "use strict";
 
-(function(namespace) {
-	namespace.wasd = function(entity, ticker) {
-		if (!entity.has_component("momentum")) {
+(function(ns) {
+	ns.wasd = function(entity, ticker) {
+		if (!window.coen.component.has(entity, "momentum")) {
 			throw entity + " doesn't have momentum";
 		}
 
