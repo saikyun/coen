@@ -1,16 +1,8 @@
-"use strict";
+'use strict';
 
 (function(namespace) {
 	namespace.init = function(container, graphic_handler, ticker) {
 		var collidables = [];
-
-		/*ticker.last_bind(function() {
-			var speed = 0;
-			collidables.forEach(function(derp) {
-				speed += derp.momentum.velocity;
-			});
-			console.log(speed);
-		});*/
 
 		var create_player = function(x, y) {
 			var player = namespace.player(ticker, collidables);
@@ -34,16 +26,8 @@
 			return ground;
 		};
 
-		var create_crosshair = function(player) {
-			var crosshair = namespace.crosshair(player, ticker, collidables);
-
-			graphic_handler.add_graphic(crosshair);
-
-			return crosshair;
-		};
-
 		var vector = {};
-		vector.name = "vector";
+		vector.name = 'vector';
 		window.coen.component.set(vector, window.coen.vector);
 		window.coen.component.set(vector, window.coen.events);
 
@@ -63,12 +47,5 @@
 
 		document.onkeydown = movement.key_down;
 		document.onkeyup = movement.key_up;
-
-		var crosshair = create_crosshair(player);
-		crosshair.events.bind("display_collision_vector", function(data) {
-			vector.vector.angle = data.angle;
-			vector.vector.velocity = data.velocity;
-		});
-		namespace.follow_mouse(crosshair, container);
 	};
 })(window.game = window.game || {});

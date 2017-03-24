@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 (function(namespace) {
 	namespace.follow_mouse = function(entity, container) {
@@ -10,17 +10,17 @@
 			entity.momentum.velocity = vector.velocity;
 		};
 
-		entity.events.bind("physics_update", function() {
+		entity.events.bind('physics_update', function() {
 			if (entity.position.x == target.x && entity.position.y == target.y) {
 				entity.momentum.velocity = 0;
 			} else {
 				update_angle_and_velocity(target, entity);
 			}
 
-			entity.events.trigger("display_collision_vector", {name: entity.name, angle: entity.momentum.angle, velocity: entity.momentum.velocity * 1});
+			entity.events.trigger('display_collision_vector', {name: entity.name, angle: entity.momentum.angle, velocity: entity.momentum.velocity * 1});
 		});
 
-		container.on("stagemousemove", function(event) {
+		container.on('stagemousemove', function(event) {
 			target.x = event.stageX;
 			target.y = event.stageY;
 			update_angle_and_velocity(target, entity);
